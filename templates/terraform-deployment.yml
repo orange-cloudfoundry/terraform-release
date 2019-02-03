@@ -1,0 +1,36 @@
+---
+name: terraform-deployment
+
+#Releases Block
+releases:
+- name: terraform
+  version: latest
+
+#Stemcells Block
+stemcells:
+- alias: default
+  os: ubuntu-xenial
+  version: latest
+
+#Update Block
+update:
+  canaries: 1
+  max_in_flight: 2
+  canary_watch_time: 15000-30000
+  update_watch_time: 15000-300000
+
+#Instance Groups Block
+instance_groups:
+- name: terraform-apply-errand
+  vm_type: default
+  stemcell: default
+  persistent_disk_type: default
+  networks:
+  - name: tf-net-exchange
+  azs: [z1,z2,z3]
+  lifecycle: errand
+  instances: 1
+  jobs:
+  - name: terraform-apply
+    release: terraform
+    properties: {}
