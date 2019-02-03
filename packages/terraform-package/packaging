@@ -9,3 +9,5 @@ CPUS=$(grep -c ^processor /proc/cpuinfo)
 export HOME=/var/vcap
 
 
+unzip terraform-0.11.7.zip
+cp terraform-0.11.7 $BOSH_INSTALL_TARGET
