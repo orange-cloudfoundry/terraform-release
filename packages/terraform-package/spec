@@ -2,4 +2,4 @@
 name: terraform-package
 dependencies: []
 files:
-- terraform-0.11.7.zip 
+- terraform-0.11.11.zip 
