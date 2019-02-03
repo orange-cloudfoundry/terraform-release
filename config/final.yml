@@ -1,7 +1,7 @@
 ---
 blobstore:
-  provider: swift
+  provider: s3
   options:
-    container_name: terraform-boshrelease
-    swift_provider: openstack
+    bucket_name: orange-terraform-boshrelease
 final_name: terraform
+
