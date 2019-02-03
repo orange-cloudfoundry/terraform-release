@@ -8,5 +8,5 @@ CPUS=$(grep -c ^processor /proc/cpuinfo)
 # $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
 export HOME=/var/vcap
 
-unzip $BOSH_COMPILE_TARGET/terraform-0.11.7.zip -d $BOSH_INSTALL_TARGET 
+unzip $BOSH_COMPILE_TARGET/terraform-0.11.11.zip -d $BOSH_INSTALL_TARGET 
 

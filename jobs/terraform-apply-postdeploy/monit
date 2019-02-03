@@ -1,0 +1,5 @@
+check process terraform-apply-postdeploy
+  with pidfile /var/vcap/sys/run/terraform-apply-postdeploy/terraform-apply-postdeploy.pid
+  start program "/var/vcap/jobs/terraform-apply-postdeploy/bin/monit_debugger terraform-apply-postdeploy_ctl '/var/vcap/jobs/terraform-apply-postdeploy/bin/ctl start'"
+  stop program "/var/vcap/jobs/terraform-apply-postdeploy/bin/monit_debugger terraform-apply-postdeploy_ctl '/var/vcap/jobs/terraform-apply-postdeploy/bin/ctl stop'"
+  group vcap
