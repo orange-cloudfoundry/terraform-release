@@ -1,6 +1,7 @@
 ---
 name: terraform-apply
-packages: []
+packages:
+- terraform-package
 templates:
   bin/run: bin/run
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
