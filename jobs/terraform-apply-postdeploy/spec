@@ -9,3 +9,9 @@ templates:
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
   post-deploy: bin/post-deploy
+  config/terraform-instructions.rb: config/terraform-instructions.tf
+properties:
+  terraform.tf:
+    description:
+      terraform file to apply 
+
