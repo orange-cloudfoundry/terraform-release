@@ -3,8 +3,8 @@ name: terraform-apply-postdeploy
 packages:
 - terraform-package
 templates:
-  bin/ctl: bin/ctl
-  bin/monit_debugger: bin/monit_debugger
+#  bin/ctl: bin/ctl
+#  bin/monit_debugger: bin/monit_debugger
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh

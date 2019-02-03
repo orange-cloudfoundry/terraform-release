@@ -4,11 +4,14 @@ set -e # exit immediately if a simple command exits with a non-zero status
 set -u # report the usage of uninitialized variables
 
 # Setup env vars and folders for the webapp_ctl script
-source /var/vcap/jobs/terraform-apply/helpers/ctl_setup.sh 'terraform-apply'
+#source /var/vcap/jobs/terraform-apply/helpers/ctl_setup.sh 'terraform-apply'
 
 export PATH=/var/vcap/packages/terraform-package:$PATH
 terraform --version
 
+terraform init -input=false 
+terraform plan -input=false -out=/var/vcap/store/terraform-apply-postdeploy/tfplan -destroy
+terraform apply -input=false -auto-approve /var/vcap/store/terraform-apply-postdeploy/tfplan
 
 EXITSTATUS=0
 
