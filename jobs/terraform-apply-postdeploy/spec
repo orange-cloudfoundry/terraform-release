@@ -11,7 +11,12 @@ templates:
   post-deploy: bin/post-deploy
   config/terraform-instructions.rb: config/terraform-instructions.tf
 properties:
-  terraform.tf:
+
+  terraform.vars:
     description:
-      terraform file to apply 
+      array of terraform vars to declare 
+  terraform.spec:
+    description:
+      array of terraform file to apply 
+
 
