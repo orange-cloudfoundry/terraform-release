@@ -12,12 +12,23 @@ set -u # report the usage of uninitialized variables
 export PATH=/var/vcap/packages/terraform-package:$PATH
 export STORE_DIR=/var/vcap/store/terraform-apply-postdeploy
 export TF_IN_AUTOMATION=notnull
+export TF_INPUT=0
+export PLUGIN-DIR=/var/vcap/packages/terraform-plugins
+
 terraform --version
 
-terraform init -input=false
+terraform init 
 cd /var/vcap/jobs/terraform-apply-postdeploy/config/
-terraform plan -input=false -out=${STORE_DIR}/tfplan -state=terraform.tfstate -destroy
-terraform apply -input=false -auto-approve  ${STORE_DIR}/tfplan
+terraform plan -out=${STORE_DIR}/tfplan -plugin-dir=$PLUGIN-DIR -get-plugins=false -state=terraform.tfstate -destroy
+terraform apply -plugin-dir=$PLUGIN-DIR -get-plugins=false -auto-approve  ${STORE_DIR}/tfplan
+
+
+#   -get-plugins=false -plugin-dir=/.terraform/plugins/linux_amd64 ../spec-applied/
+
+
+#git add/commit to keep history
+
+
 
 EXITSTATUS=0
 
