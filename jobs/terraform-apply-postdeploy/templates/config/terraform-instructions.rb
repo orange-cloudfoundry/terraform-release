@@ -1,1 +1,1 @@
-<%= p('terraform.spec') %>
+<%= p('terraform.specs') %>

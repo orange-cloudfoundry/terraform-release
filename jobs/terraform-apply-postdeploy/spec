@@ -15,7 +15,7 @@ properties:
   terraform.vars:
     description:
       array of terraform vars to declare 
-  terraform.spec:
+  terraform.specs:
     description:
       array of terraform file to apply 
 
