@@ -26,13 +26,16 @@ export no_proxy=<%= no_proxy %>
 terraform --version
 
 
-cd /var/vcap/jobs/terraform-apply-postdeploy/config/
+cd /var/vcap/store/terraform-apply-postdeploy
+ln -sf  /var/vcap/jobs/terraform-apply-postdeploy/config/terraform-instructions.tf terraform-instructions.tf
 terraform init 
+terraform providers
 
 #terraform plan -out=${STORE_DIR}/tfplan -plugin-dir=$PLUGIN_DIR -get-plugins=false -state=${STORE_DIR}/terraform.tfstate
-terraform plan -out=${STORE_DIR}/tfplan -state=${STORE_DIR}/terraform.tfstate
+terraform plan -no-color -out=${STORE_DIR}/tfplan -state=${STORE_DIR}/terraform.tfstate
  
-terraform apply -plugin-dir=$PLUGIN_DIR -get-plugins=false -auto-approve  ${STORE_DIR}/tfplan
+#terraform apply -no-color -plugin-dir=$PLUGIN_DIR -get-plugins=false -auto-approve  ${STORE_DIR}/tfplan
+terraform apply -no-color -auto-approve ${STORE_DIR}/tfplan
 
 
 #git add/commit to keep history
