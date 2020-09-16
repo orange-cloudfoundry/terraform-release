@@ -13,17 +13,26 @@ export PATH=/var/vcap/packages/terraform-package:$PATH
 export STORE_DIR=/var/vcap/store/terraform-apply-postdeploy
 export TF_IN_AUTOMATION=notnull
 export TF_INPUT=0
-export PLUGIN-DIR=/var/vcap/packages/terraform-plugins
+export PLUGIN_DIR=/var/vcap/packages/terraform-plugins
+
+<% if_p('terraform.https_proxy') do |proxy| %>
+export https_proxy=<%= proxy %>
+<% end %>
+
+<% if_p('terraform.https_proxy') do |no_proxy| %>
+export no_proxy=<%= no_proxy %>
+<% end %>
 
 terraform --version
 
-terraform init 
+
 cd /var/vcap/jobs/terraform-apply-postdeploy/config/
-terraform plan -out=${STORE_DIR}/tfplan -plugin-dir=$PLUGIN-DIR -get-plugins=false -state=terraform.tfstate -destroy
-terraform apply -plugin-dir=$PLUGIN-DIR -get-plugins=false -auto-approve  ${STORE_DIR}/tfplan
+terraform init 
 
-
-#   -get-plugins=false -plugin-dir=/.terraform/plugins/linux_amd64 ../spec-applied/
+#terraform plan -out=${STORE_DIR}/tfplan -plugin-dir=$PLUGIN_DIR -get-plugins=false -state=${STORE_DIR}/terraform.tfstate
+terraform plan -out=${STORE_DIR}/tfplan -state=${STORE_DIR}/terraform.tfstate
+ 
+terraform apply -plugin-dir=$PLUGIN_DIR -get-plugins=false -auto-approve  ${STORE_DIR}/tfplan
 
 
 #git add/commit to keep history

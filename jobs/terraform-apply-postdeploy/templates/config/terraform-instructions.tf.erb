@@ -1,0 +1,5 @@
+<% if_p('terraform.specs') do |value| %>
+<% p('terraform.specs').each do |file| %>
+<%= file %>
+<% end %>
+<% end %>
