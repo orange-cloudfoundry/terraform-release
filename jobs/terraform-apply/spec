@@ -3,6 +3,26 @@ name: terraform-apply
 packages:
 - terraform-package
 templates:
-  bin/run: bin/run
+#  bin/ctl: bin/ctl
+#  bin/monit_debugger: bin/monit_debugger
+  data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
+  bin/post-deploy.erb: bin/post-deploy
+  config/terraform-instructions.tf.erb: config/terraform-instructions.tf
+properties:
+
+  terraform.vars:
+    description:
+      array of terraform vars to declare 
+  terraform.specs:
+    description:
+      array of terraform file to apply
+  terraform.https_proxy:
+    description:
+      if set, http url to use as proxy env for terraform, eg http://myproxy:3128
+  terraform.no_proxy:
+    description:
+      if set, coma separated list of domain and ips to exclude from proxy (go lang syntax)
+
+

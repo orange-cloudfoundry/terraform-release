@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -u # report the usage of uninitialized variables
+
+<% if_p('scripting.post-stop-script') do |script| %>
+<%= p('scripting.post-stop-script') %>
+<% end %>
+
+
+
+
+EXITSTATUS=0
+
+echo " post-stop is complete; exit status $EXITSTATUS"
+exit $EXITSTATUS
