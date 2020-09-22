@@ -1,12 +1,12 @@
 #!/bin/bash
 
-set -e # exit immediately if a simple command exits with a non-zero status
-set -u # report the usage of uninitialized variables
+export PATH=/var/vcap/jobs/terraform-apply/bin:$PATH
 
-<%= p("scripting.errand-script") %>
+<% if_p('terraform.lifecycle.errand') do |value| %>
+
+<% if @value %>
+terrafom-plan-apply
+<% end %>
 
 
-EXITSTATUS=0
-
-echo "errand run script is complete; exit status $EXITSTATUS"
-exit $EXITSTATUS
+<% end %>

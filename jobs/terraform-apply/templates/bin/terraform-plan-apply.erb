@@ -1,0 +1,48 @@
+#!/bin/bash
+
+set -e # exit immediately if a simple command exits with a non-zero status
+set -u # report the usage of uninitialized variables
+
+# Setup env vars and folders for the webapp_ctl script
+#source /var/vcap/jobs/terraform-apply/helpers/ctl_setup.sh 'terraform-apply'
+# see https://learn.hashicorp.com/terraform/development/running-terraform-in-automation
+# see https://learn.hashicorp.com/terraform/development/running-terraform-in-automation#pre-installed-plugins
+
+
+export PATH=/var/vcap/packages/terraform-package:$PATH
+export STORE_DIR=/var/vcap/store/terraform-apply
+export TF_IN_AUTOMATION=notnull
+export TF_INPUT=0
+export PLUGIN_DIR=/var/vcap/packages/terraform-plugins
+
+<% if_p('terraform.https_proxy') do |proxy| %>
+export https_proxy=<%= proxy %>
+<% end %>
+
+<% if_p('terraform.https_proxy') do |no_proxy| %>
+export no_proxy=<%= no_proxy %>
+<% end %>
+
+terraform --version
+
+mkdir -p $STORE_DIR
+cd $STORE_DIR
+ln -sf  /var/vcap/jobs/terraform-apply/config/terraform-instructions.tf terraform-instructions.tf
+terraform init 
+terraform providers
+
+#terraform plan -out=${STORE_DIR}/tfplan -plugin-dir=$PLUGIN_DIR -get-plugins=false -state=${STORE_DIR}/terraform.tfstate
+terraform plan -no-color -out=${STORE_DIR}/tfplan -state=${STORE_DIR}/terraform.tfstate
+ 
+#terraform apply -no-color -plugin-dir=$PLUGIN_DIR -get-plugins=false -auto-approve  ${STORE_DIR}/tfplan
+terraform apply -no-color -auto-approve ${STORE_DIR}/tfplan
+
+
+#git add/commit to keep history
+
+
+
+EXITSTATUS=0
+
+echo "terraform-apply is complete; exit status $EXITSTATUS"
+exit $EXITSTATUS

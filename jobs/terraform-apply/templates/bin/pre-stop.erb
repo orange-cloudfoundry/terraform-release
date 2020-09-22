@@ -1,15 +1,7 @@
 #!/bin/bash
 
-set -u # report the usage of uninitialized variables
+export PATH=/var/vcap/jobs/terraform-apply/bin:$PATH
 
-<% if_p('scripting.pre-stop-script') do |script| %>
-<%= p('scripting.pre-stop-script') %>
-<% end %>
-
-
-
-
-EXITSTATUS=0
-
-echo " pre-stop is complete; exit status $EXITSTATUS"
-exit $EXITSTATUS
+# terraform.lifecycle.purge-on-delete-deployment
+#FIXME: test expected deployment. If deployment delete, should terraform clean everything
+#. ./terrafom-plan-apply

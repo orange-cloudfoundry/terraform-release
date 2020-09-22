@@ -9,6 +9,11 @@ templates:
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
   bin/post-deploy.erb: bin/post-deploy
+  bin/pre-start.erb: bin/pre-start
+  bin/post-start.erb: bin/post-start
+  bin/run.erb: bin/run
+  bin/terraform-plan-apply.erb: terraform-plan-apply
+  
   config/terraform-instructions.tf.erb: config/terraform-instructions.tf
 properties:
 
@@ -25,4 +30,23 @@ properties:
     description:
       if set, coma separated list of domain and ips to exclude from proxy (go lang syntax)
 
+  terraform.lifecycle.errand:
+    description:
+    default: plan and apply on bosh errand launch
 
+  terraform.lifecycle.post-deploy:
+    description: plan and apply on bosh deployment post-deploy
+    default: false
+
+  terraform.lifecycle.post-start:
+    description:
+    default: false
+
+  terraform.lifecycle.pre-start:
+    description: plan and apply on bosh instance pre-start
+    default: false
+
+  terraform.lifecycle.purge-on-delete-deployment:
+    description: should all terraform artifacts be deleted on deployment delete
+    default: false
+    

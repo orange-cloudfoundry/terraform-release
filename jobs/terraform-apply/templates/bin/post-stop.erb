@@ -1,15 +1,6 @@
 #!/bin/bash
 
-set -u # report the usage of uninitialized variables
+export PATH=/var/vcap/jobs/terraform-apply/bin:$PATH
 
-<% if_p('scripting.post-stop-script') do |script| %>
-<%= p('scripting.post-stop-script') %>
-<% end %>
-
-
-
-
-EXITSTATUS=0
-
-echo " post-stop is complete; exit status $EXITSTATUS"
-exit $EXITSTATUS
+#FIXME: test expected deployment. If deployment delete, should terraform clean everything
+#. ./terrafom-plan-apply
