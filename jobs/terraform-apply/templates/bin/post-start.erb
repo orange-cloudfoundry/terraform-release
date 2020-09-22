@@ -4,8 +4,8 @@ export PATH=/var/vcap/jobs/terraform-apply/bin:$PATH
 
 <% if_p('terraform.lifecycle.post-start') do |value| %>
 
-<% if @value %>
-terrafom-plan-apply
+<% if value %>
+terraform-plan-apply
 <% end %>
 
 

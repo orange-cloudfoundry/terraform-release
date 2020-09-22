@@ -31,18 +31,16 @@ ln -sf  /var/vcap/jobs/terraform-apply/config/terraform-instructions.tf terrafor
 terraform init 
 terraform providers
 
-#terraform plan -out=${STORE_DIR}/tfplan -plugin-dir=$PLUGIN_DIR -get-plugins=false -state=${STORE_DIR}/terraform.tfstate
-terraform plan -no-color -out=${STORE_DIR}/tfplan -state=${STORE_DIR}/terraform.tfstate
- 
-#terraform apply -no-color -plugin-dir=$PLUGIN_DIR -get-plugins=false -auto-approve  ${STORE_DIR}/tfplan
-terraform apply -no-color -auto-approve ${STORE_DIR}/tfplan
 
+echo 'terraform plan"
+terraform plan -input=false -no-color -out=${STORE_DIR}/tfplan -state=${STORE_DIR}/terraform.tfstate
+
+set +e # do not exit immediately if a simple command exits with a non-zero status 
+echo "terraform apply"
+terraform apply -input=false -no-color -auto-approve ${STORE_DIR}/tfplan
+EXITSTATUS=$?
 
 #git add/commit to keep history
-
-
-
-EXITSTATUS=0
 
 echo "terraform-apply is complete; exit status $EXITSTATUS"
 exit $EXITSTATUS

@@ -12,7 +12,7 @@ templates:
   bin/pre-start.erb: bin/pre-start
   bin/post-start.erb: bin/post-start
   bin/run.erb: bin/run
-  bin/terraform-plan-apply.erb: terraform-plan-apply
+  bin/terraform-plan-apply.erb: bin/terraform-plan-apply
   
   config/terraform-instructions.tf.erb: config/terraform-instructions.tf
 properties:
@@ -31,8 +31,8 @@ properties:
       if set, coma separated list of domain and ips to exclude from proxy (go lang syntax)
 
   terraform.lifecycle.errand:
-    description:
-    default: plan and apply on bosh errand launch
+    description: plan and apply on bosh errand launch
+    default: true
 
   terraform.lifecycle.post-deploy:
     description: plan and apply on bosh deployment post-deploy
