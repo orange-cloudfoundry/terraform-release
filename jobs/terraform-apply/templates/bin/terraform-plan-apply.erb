@@ -27,15 +27,27 @@ terraform --version
 
 mkdir -p $STORE_DIR
 cd $STORE_DIR
+
+echo "prepare tf files"
 ln -sf  /var/vcap/jobs/terraform-apply/config/terraform-instructions.tf terraform-instructions.tf
+
+echo "prepare tf vars"
+echo "#generated vars" > $STORE_DIR/terraform.tfvars
+
+<% p('terraform.vars').each do |param| %>
+echo '<%= param %>' >> $STORE_DIR/terraform.tfvars
+<% end %>
+
+
 terraform init 
 terraform providers
 
 
-echo 'terraform plan"
+
+echo "terraform plan"
 terraform plan -input=false -no-color -out=${STORE_DIR}/tfplan -state=${STORE_DIR}/terraform.tfstate
 
-set +e # do not exit immediately if a simple command exits with a non-zero status 
+#set +e # do not exit immediately if a simple command exits with a non-zero status 
 echo "terraform apply"
 terraform apply -input=false -no-color -auto-approve ${STORE_DIR}/tfplan
 EXITSTATUS=$?
