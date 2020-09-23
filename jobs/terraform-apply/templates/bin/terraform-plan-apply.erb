@@ -19,7 +19,7 @@ export PLUGIN_DIR=/var/vcap/packages/terraform-plugins
 export https_proxy=<%= proxy %>
 <% end %>
 
-<% if_p('terraform.https_proxy') do |no_proxy| %>
+<% if_p('terraform.no_proxy') do |no_proxy| %>
 export no_proxy=<%= no_proxy %>
 <% end %>
 
