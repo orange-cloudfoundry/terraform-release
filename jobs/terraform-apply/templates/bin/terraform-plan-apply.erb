@@ -9,7 +9,7 @@ set -u # report the usage of uninitialized variables
 # see https://learn.hashicorp.com/terraform/development/running-terraform-in-automation#pre-installed-plugins
 
 
-export PATH=/var/vcap/packages/terraform-package:$PATH
+export PATH=/var/vcap/packages/terraform-package-0.13:$PATH
 export STORE_DIR=/var/vcap/store/terraform-apply
 export TF_IN_AUTOMATION=notnull
 export TF_INPUT=0
@@ -39,7 +39,8 @@ touch $STORE_DIR/tf.tfvars
 echo '<%= param %>' >> $STORE_DIR/tf.tfvars
 <% end %>
 
-sed -i 's/=/: /g' $STORE_DIR/tf.tfvars
+#sed -i 's/=/: /g' $STORE_DIR/tf.tfvars
+
 
 terraform init 
 terraform providers
@@ -47,11 +48,11 @@ terraform providers
 
 
 echo "terraform plan"
-terraform plan -no-color -out=${STORE_DIR}/tfplan -state=${STORE_DIR}/terraform.tfstate
+terraform plan -no-color -out=${STORE_DIR}/tfplan -var-file=$STORE_DIR/tf.tfvars -state=${STORE_DIR}/terraform.tfstate
 
 #set +e # do not exit immediately if a simple command exits with a non-zero status 
 echo "terraform apply"
-terraform apply -input=false -no-color -auto-approve ${STORE_DIR}/tfplan
+terraform apply -input=false -no-color -auto-approve -var-file=$STORE_DIR/tf.tfvars  ${STORE_DIR}/tfplan
 EXITSTATUS=$?
 
 #git add/commit to keep history
