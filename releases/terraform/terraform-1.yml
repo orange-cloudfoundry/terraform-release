@@ -1,0 +1,32 @@
+name: terraform
+version: "1"
+commit_hash: 4565d35
+uncommitted_changes: false
+jobs:
+- name: terraform-apply
+  version: 7567dbeaed7ad0a027749714bd505993c9c9236ea77465bb61da95a727cc59ab
+  fingerprint: 7567dbeaed7ad0a027749714bd505993c9c9236ea77465bb61da95a727cc59ab
+  sha1: sha256:e5086bf726a92265aab6fdfacc705f920dbf90d75fc2b51815dee48f163a969c
+  packages:
+  - terraform-package
+  - terraform-package-0.13
+packages:
+- name: terraform-package
+  version: 01dd58dae25be9a9c91f67ddbc39890ed504a1c155d6fdd2484d700e7f5b7cc2
+  fingerprint: 01dd58dae25be9a9c91f67ddbc39890ed504a1c155d6fdd2484d700e7f5b7cc2
+  sha1: sha256:f654501214832cc5729b73338ab22d613584f30217a3bc4316696160f9a913b2
+  dependencies: []
+- name: terraform-package-0.13
+  version: 4bb49e6e1493dca15cf7a7637cb454393e348c46df3382a7091259a676399af3
+  fingerprint: 4bb49e6e1493dca15cf7a7637cb454393e348c46df3382a7091259a676399af3
+  sha1: sha256:cf4324ed160b1869b2b60f7018dc18bcfb829a7e6c4b5e75f378e4c5d8bda196
+  dependencies: []
+- name: terraform-plugins
+  version: dc45c3be9226d170ec881a303419f5e72f868d3037ee411f48b4332e137871c2
+  fingerprint: dc45c3be9226d170ec881a303419f5e72f868d3037ee411f48b4332e137871c2
+  sha1: sha256:21cebe1e9f83956ec9602c910e893720744feba4e7a80dc0b85c8c8817e7f171
+  dependencies: []
+license:
+  version: c52a2c414b935147f0ccbe8d798edbbcd65c5e9084079f727b3fb5727a44e50d
+  fingerprint: c52a2c414b935147f0ccbe8d798edbbcd65c5e9084079f727b3fb5727a44e50d
+  sha1: sha256:4b6af63893f5709071eb6dfd211439d7945a3c63a05e1db3edad3075953a50ab
