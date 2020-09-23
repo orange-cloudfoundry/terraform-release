@@ -14,6 +14,7 @@ templates:
   bin/terraform-plan-apply.erb: bin/terraform-plan-apply
   
   config/terraform-instructions.tf.erb: config/terraform-instructions.tf
+  config/terraform.tfvars.json.erb: config/terraform.tfvars.json
 properties:
 
   terraform.vars:

@@ -32,27 +32,18 @@ echo "prepare tf files"
 ln -sf  /var/vcap/jobs/terraform-apply/config/terraform-instructions.tf terraform-instructions.tf
 
 echo "prepare tf vars"
-rm -f $STORE_DIR/tf.tfvars
-touch $STORE_DIR/tf.tfvars
-
-<% p('terraform.vars').each do |param| %>
-echo '<%= param %>' >> $STORE_DIR/tf.tfvars
-<% end %>
-
-#sed -i 's/=/: /g' $STORE_DIR/tf.tfvars
+ln -sf  /var/vcap/jobs/terraform-apply/config/terraform.tfvars.json terraform.tfvars.json
 
 
 terraform init 
 terraform providers
 
-
-
 echo "terraform plan"
-terraform plan -no-color -out=${STORE_DIR}/tfplan -var-file=$STORE_DIR/tf.tfvars -state=${STORE_DIR}/terraform.tfstate
+terraform plan -no-color -out=${STORE_DIR}/tfplan -var-file=${STORE_DIR}/terraform.tfvars.json -state=${STORE_DIR}/terraform.tfstate
 
 #set +e # do not exit immediately if a simple command exits with a non-zero status 
 echo "terraform apply"
-terraform apply -input=false -no-color -auto-approve -var-file=$STORE_DIR/tf.tfvars  ${STORE_DIR}/tfplan
+terraform apply -input=false -no-color -auto-approve -var-file=${STORE_DIR}/terraform.tfvars.json  ${STORE_DIR}/tfplan
 EXITSTATUS=$?
 
 #git add/commit to keep history

@@ -1,0 +1,4 @@
+<% if_p('terraform.vars') do |variables| %>
+<%= JSON.dump(variables) %>
+<% end %>
+
