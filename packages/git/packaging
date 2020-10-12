@@ -1,6 +1,6 @@
 set -ex
 
-tar -xzvf git/git-2.*.tar.gz
+tar -xvf git/git-2.*.tar.xz
 cd git-2.*
 ./configure --prefix=${BOSH_INSTALL_TARGET}
 make all

@@ -1,3 +1,7 @@
+git/git-2.19.5.tar.xz:
+  size: 5243544
+  object_id: 6026ffe5-aae7-4af9-700d-8dbc4f0045ab
+  sha: sha256:eb27f94b9460e3bdccbd2c31bf700a2a9e275a1b4d7491269503881954aa74d8
 terraform-0.11.11.zip:
   size: 20971661
   object_id: e12c976e-5039-4312-6851-8f5ae5fe0417
