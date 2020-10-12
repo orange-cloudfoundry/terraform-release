@@ -15,6 +15,9 @@ export TF_IN_AUTOMATION=notnull
 export TF_INPUT=0
 export PLUGIN_DIR=/var/vcap/packages/terraform-plugins
 
+export PATH=/var/vcap/packages/git/bin/:$PATH
+
+
 <% if_p('terraform.https_proxy') do |proxy| %>
 export https_proxy=<%= proxy %>
 <% end %>
@@ -28,11 +31,19 @@ terraform --version
 mkdir -p $STORE_DIR
 cd $STORE_DIR
 
+#configure git fs on /var/vcap/store
+
+git init
+export HOME=/var/vcap/data/terraform-apply
+git config --global user.email "bosh.terraform@bosh.com"
+git config --global user.name "bosh terraform"
+
+
 echo "prepare tf files"
-ln -sf  /var/vcap/jobs/terraform-apply/config/terraform-instructions.tf terraform-instructions.tf
+cp -f /var/vcap/jobs/terraform-apply/config/terraform-instructions.tf terraform-instructions.tf
 
 echo "prepare tf vars"
-ln -sf  /var/vcap/jobs/terraform-apply/config/terraform.tfvars.json terraform.tfvars.json
+cp -f /var/vcap/jobs/terraform-apply/config/terraform.tfvars.json terraform.tfvars.json
 
 
 terraform init 
@@ -47,6 +58,9 @@ terraform apply -input=false -no-color -auto-approve  ${STORE_DIR}/tfplan
 EXITSTATUS=$?
 
 #git add/commit to keep history
+git add .
+git commit -m "bosh terraform apply"
+
 
 echo "terraform-apply is complete; exit status $EXITSTATUS"
 exit $EXITSTATUS
