@@ -1,0 +1,37 @@
+---
+name: terraform-plan-only
+packages: []
+templates:
+  bin/post-deploy.erb: bin/post-deploy
+  bin/pre-start.erb: bin/pre-start
+  bin/post-start.erb: bin/post-start
+  bin/run.erb: bin/run
+
+properties:
+
+  #Note this job must be colocated with terraform-apply job
+  terraform.lifecycle.errand:
+    description: plan and apply on bosh errand launch
+    default: true
+
+
+  terraform.lifecycle.pre-start:
+    description: plan and apply on bosh instance pre-start
+    default: false
+
+  terraform.lifecycle.post-start:
+    description:
+    default: false
+
+  terraform.lifecycle.post-deploy:
+    description: plan and apply on bosh deployment post-deploy
+    default: false
+
+
+  terraform.lifecycle.pre-stop:
+    description: plan and apply on bosh instance pre-stop
+    default: false
+
+  terraform.lifecycle.post-stop:
+    description: plan and apply on bosh instance post-stop
+    default: false
