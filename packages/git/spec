@@ -1,5 +1,7 @@
 ---
 name: git
+
+#blob built from https://mirrors.edge.kernel.org/pub/software/scm/git/
 dependencies:
 files:
 - git/**/*

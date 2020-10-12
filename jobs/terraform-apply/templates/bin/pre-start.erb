@@ -2,6 +2,9 @@
 
 export PATH=/var/vcap/jobs/terraform-apply/bin:$PATH
 
+#add terraform in path.
+
+
 <% if_p('terraform.lifecycle.pre-start') do |value| %>
 
 <% if value %>
