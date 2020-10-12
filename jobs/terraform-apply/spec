@@ -17,7 +17,8 @@ templates:
   config/terraform-instructions.tf.erb: config/terraform-instructions.tf
   config/terraform.tfvars.json.erb: config/terraform.tfvars.json
   
-  bin/terraform-path.sh.erb: bin/terraform-path.sh
+  bin/envrc.erb: bin/envrc
+  bin/setup-user-env.erb: bin/setup-user-env
 properties:
 
   terraform.vars:
