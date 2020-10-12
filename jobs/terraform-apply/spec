@@ -16,6 +16,7 @@ templates:
   
   config/terraform-instructions.tf.erb: config/terraform-instructions.tf
   config/terraform.tfvars.json.erb: config/terraform.tfvars.json
+  config/.gitignore.erb: config/.gitignore
   
   bin/envrc.erb: bin/envrc
   bin/setup-user-env.erb: bin/setup-user-env

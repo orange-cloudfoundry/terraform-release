@@ -38,6 +38,9 @@ export HOME=/var/vcap/data/terraform-apply
 git config --global user.email "bosh.terraform@bosh.com"
 git config --global user.name "bosh terraform"
 
+cp -f /var/vcap/jobs/terraform-apply/config/.gitignore .gitignore
+
+git checkout HEAD #set git to HEAD in case bosh ssh manual git commands changed workdir
 
 echo "prepare tf files"
 cp -f /var/vcap/jobs/terraform-apply/config/terraform-instructions.tf terraform-instructions.tf
