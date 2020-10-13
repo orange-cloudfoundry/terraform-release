@@ -53,7 +53,7 @@ terraform init
 terraform providers
 
 echo "terraform plan"
-terraform plan -no-color -out=${STORE_DIR}/tfplan -var-file=${STORE_DIR}/terraform.tfvars.json -state=${STORE_DIR}/terraform.tfstate
+terraform plan -detailed-exitcode -no-color -out=${STORE_DIR}/tfplan -var-file=${STORE_DIR}/terraform.tfvars.json -state=${STORE_DIR}/terraform.tfstate
 EXITSTATUS=$?
 
 if [ -n "$PLAN_ONLY" ] ; then
