@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -e # exit immediately if a simple command exits with a non-zero status
 #set -u # report the usage of uninitialized variables
 
 # Setup env vars and folders for the webapp_ctl script
@@ -38,6 +37,8 @@ export HOME=/var/vcap/data/terraform-apply
 git config --global user.email "bosh.terraform@bosh.com"
 git config --global user.name "bosh terraform"
 
+git reset HEAD --hard
+
 cp -f /var/vcap/jobs/terraform-apply/config/.gitignore .gitignore
 
 #git checkout HEAD #set git to HEAD in case bosh ssh manual git commands changed workdir
@@ -61,7 +62,6 @@ if [ -n "$PLAN_ONLY" ] ; then
     exit $EXITSTATUS
 fi
 
-#set +e # do not exit immediately if a simple command exits with a non-zero status 
 echo "terraform apply"
 terraform apply -input=false -no-color -auto-approve  ${STORE_DIR}/tfplan
 EXITSTATUS=$?
