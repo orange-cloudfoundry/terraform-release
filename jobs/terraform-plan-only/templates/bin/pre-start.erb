@@ -1,17 +1,12 @@
 #!/bin/bash
 
 export PATH=/var/vcap/jobs/terraform-apply/bin:$PATH
-export JOB_DIR=/var/vcap/jobs/terraform-apply
-
-
-#add terraform in path.
-# Setup ssh env vars
-${JOB_DIR}/bin/setup-user-env
 
 <% if_p('terraform.lifecycle.pre-start') do |value| %>
-
 <% if value %>
+export PLAN_ONLY=true
 terraform-plan-apply
 <% end %>
+
 
 <% end %>

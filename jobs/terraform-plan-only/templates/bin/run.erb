@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export PATH=/var/vcap/jobs/terraform-apply/bin:$PATH
+
+<% if_p('terraform.lifecycle.errand') do |value| %>
+<% if value %>
+export PLAN_ONLY=true
+terraform-plan-apply
+<% end %>
+
+
+<% end %>

@@ -3,6 +3,7 @@ name: terraform-apply
 packages:
 - terraform-package
 - terraform-package-0.13
+- git
 templates:
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
@@ -15,6 +16,10 @@ templates:
   
   config/terraform-instructions.tf.erb: config/terraform-instructions.tf
   config/terraform.tfvars.json.erb: config/terraform.tfvars.json
+  config/.gitignore.erb: config/.gitignore
+  
+  bin/envrc.erb: bin/envrc
+  bin/setup-user-env.erb: bin/setup-user-env
 properties:
 
   terraform.vars:
@@ -34,17 +39,28 @@ properties:
     description: plan and apply on bosh errand launch
     default: true
 
-  terraform.lifecycle.post-deploy:
-    description: plan and apply on bosh deployment post-deploy
+
+  terraform.lifecycle.pre-start:
+    description: plan and apply on bosh instance pre-start
     default: false
 
   terraform.lifecycle.post-start:
     description:
     default: false
 
-  terraform.lifecycle.pre-start:
-    description: plan and apply on bosh instance pre-start
+  terraform.lifecycle.post-deploy:
+    description: plan and apply on bosh deployment post-deploy
     default: false
+
+
+  terraform.lifecycle.pre-stop:
+    description: plan and apply on bosh instance pre-stop
+    default: false
+
+  terraform.lifecycle.post-stop:
+    description: plan and apply on bosh instance post-stop
+    default: false
+
 
   terraform.lifecycle.purge-on-delete-deployment:
     description: should all terraform artifacts be deleted on deployment delete

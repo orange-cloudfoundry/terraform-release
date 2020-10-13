@@ -3,5 +3,8 @@
 export PATH=/var/vcap/jobs/terraform-apply/bin:$PATH
 
 # terraform.lifecycle.purge-on-delete-deployment
-#FIXME: test expected deployment. If deployment delete, should terraform clean everything
-#. ./terrafom-plan-apply
+
+if [[ "${BOSH_DEPLOYMENT_NEXT_STATE}" == "delete" ]] ; then
+    set -e
+    terraform destroy
+fi
