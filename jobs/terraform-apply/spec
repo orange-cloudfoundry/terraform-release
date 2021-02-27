@@ -1,7 +1,6 @@
 ---
 name: terraform-apply
 packages:
-- terraform-package
 - terraform-package-0.13
 - git
 templates:
