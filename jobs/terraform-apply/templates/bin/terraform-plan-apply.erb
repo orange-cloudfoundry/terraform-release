@@ -53,6 +53,19 @@ cp -f /var/vcap/jobs/terraform-apply/config/terraform.tfvars.json terraform.tfva
 terraform init 
 terraform providers
 
+#now set proxy for execution
+export https_proxy=
+export no_proxy=
+
+<% if_p('terraform.execution_https_proxy') do |proxy| %>
+export https_proxy=<%= proxy %>
+<% end %>
+
+<% if_p('terraform.execution_no_proxy') do |no_proxy| %>
+export no_proxy=<%= no_proxy %>
+<% end %>
+
+
 echo "terraform plan"
 terraform plan -detailed-exitcode -no-color -out=${STORE_DIR}/tfplan -var-file=${STORE_DIR}/terraform.tfvars.json -state=${STORE_DIR}/terraform.tfstate
 EXITSTATUS=$?
