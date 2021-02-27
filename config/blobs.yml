@@ -10,6 +10,10 @@ terraform-0.13.3.zip:
   size: 34879507
   object_id: 02e665cd-fe76-4178-615c-f44c3e5c7ff1
   sha: sha256:35c662be9d32d38815cde5fa4c9fa61a3b7f39952ecd50ebf92fd1b2ddd6109b
+terraform-0.13.6.zip:
+  size: 34880158
+  object_id: 8bdbf9a0-5090-4b23-602c-40a8e7f1ce0c
+  sha: sha256:55f2db00b05675026be9c898bdd3e8230ff0c5c78dd12d743ca38032092abfc9
 terraform-provider-cloudfoundry_v0.11.2:
   size: 39127656
   object_id: be89f5fd-0361-48e6-50f4-e7f1b8cb3ad6

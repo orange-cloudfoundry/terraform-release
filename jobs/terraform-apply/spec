@@ -1,7 +1,6 @@
 ---
 name: terraform-apply
 packages:
-- terraform-package
 - terraform-package-0.13
 - git
 templates:
@@ -30,8 +29,19 @@ properties:
       array of terraform file to apply
   terraform.https_proxy:
     description:
-      if set, http url to use as proxy env for terraform, eg http://myproxy:3128
+      if set, http url to use as proxy env for terraform init, eg http://myproxy:3128
   terraform.no_proxy:
+    description:
+      if set, coma separated list of domain and ips to exclude from proxy (go lang syntax)
+
+  terraform.lifecycle.errand:
+    description: plan and apply on bosh errand launch
+    default: true
+
+  terraform.execution_https_proxy:
+    description:
+      if set, http url to use as proxy env for terraform execution, eg http://myproxy:3128
+  terraform.execution_no_proxy:
     description:
       if set, coma separated list of domain and ips to exclude from proxy (go lang syntax)
 

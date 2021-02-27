@@ -2,4 +2,4 @@
 name: terraform-package-0.13
 dependencies: []
 files:
-- terraform-0.13.3.zip 
+- terraform-0.13.6.zip 
