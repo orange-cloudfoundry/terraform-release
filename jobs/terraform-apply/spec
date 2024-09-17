@@ -26,7 +26,9 @@ properties:
       array of terraform vars to declare 
   terraform.specs:
     description:
-      array of terraform file to apply
+      array of terraform configuration file (inlined as a string) to apply
+    example: 'resource "aws_instance" "example" {\n  ami = "abc123" \n   network_interface { \n     # ... \n   }\n }'
+
   terraform.https_proxy:
     description:
       if set, http url to use as proxy env for terraform init, eg http://myproxy:3128
@@ -55,7 +57,7 @@ properties:
     default: false
 
   terraform.lifecycle.post-start:
-    description:
+    description: plan and apply on bosh deployment post-start
     default: false
 
   terraform.lifecycle.post-deploy:
