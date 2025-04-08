@@ -1,0 +1,42 @@
+name: terraform
+version: "5"
+commit_hash: 2d27a0b
+uncommitted_changes: false
+jobs:
+- name: terraform-apply
+  version: 6b14d9620b03cc90d51d9a3afd67323dfd5021c4ceada2ececbb9e2595dcd4b9
+  fingerprint: 6b14d9620b03cc90d51d9a3afd67323dfd5021c4ceada2ececbb9e2595dcd4b9
+  sha1: sha256:7f0c06b4761d5a4ba394158585b5b58286c1f89d545e14ae9c1f671e470a98e9
+  packages:
+  - terraform-package-0.13
+  - git
+- name: terraform-plan-only
+  version: 3b553c39589c4499bc767dad6e21d1150e06916510091251d796deaff5db69c7
+  fingerprint: 3b553c39589c4499bc767dad6e21d1150e06916510091251d796deaff5db69c7
+  sha1: sha256:154bf00bc123632c0d164d8bdbc3e04fe1a12123254830436c22244b8399b3ee
+  packages: []
+packages:
+- name: git
+  version: 86209ea3cbf073e75b2f334e3501b28739538f24b9bcb85c14befcdbd32498af
+  fingerprint: 86209ea3cbf073e75b2f334e3501b28739538f24b9bcb85c14befcdbd32498af
+  sha1: sha256:3354d3820c298b22dfc8c4c385e515a324fe22f482db7b6a37f48ea07397803a
+  dependencies: []
+- name: terraform-package
+  version: 01dd58dae25be9a9c91f67ddbc39890ed504a1c155d6fdd2484d700e7f5b7cc2
+  fingerprint: 01dd58dae25be9a9c91f67ddbc39890ed504a1c155d6fdd2484d700e7f5b7cc2
+  sha1: sha256:f654501214832cc5729b73338ab22d613584f30217a3bc4316696160f9a913b2
+  dependencies: []
+- name: terraform-package-0.13
+  version: cdb04a31912dd900fedcaca81b3e81108d45461a244b74940788a1611362cb0a
+  fingerprint: cdb04a31912dd900fedcaca81b3e81108d45461a244b74940788a1611362cb0a
+  sha1: sha256:e60470240b6175b7685879435cf6006d04c9fe6813142854075eeb5988db259e
+  dependencies: []
+- name: terraform-plugins
+  version: dc45c3be9226d170ec881a303419f5e72f868d3037ee411f48b4332e137871c2
+  fingerprint: dc45c3be9226d170ec881a303419f5e72f868d3037ee411f48b4332e137871c2
+  sha1: sha256:21cebe1e9f83956ec9602c910e893720744feba4e7a80dc0b85c8c8817e7f171
+  dependencies: []
+license:
+  version: c52a2c414b935147f0ccbe8d798edbbcd65c5e9084079f727b3fb5727a44e50d
+  fingerprint: c52a2c414b935147f0ccbe8d798edbbcd65c5e9084079f727b3fb5727a44e50d
+  sha1: sha256:4b6af63893f5709071eb6dfd211439d7945a3c63a05e1db3edad3075953a50ab
